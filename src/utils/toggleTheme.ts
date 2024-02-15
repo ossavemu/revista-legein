@@ -36,9 +36,7 @@ const updateTheme = () => {
   };
 
   const themePreference = getThemePreference();
-  const isDark =
-    themePreference === 'dark' ||
-    (themePreference === 'system' && matchMedia.matches);
+  const isDark = themePreference === 'dark';
 
   setIcon(themePreference as string);
   document.documentElement.classList[isDark ? 'add' : 'remove']('dark');

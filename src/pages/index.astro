@@ -1,0 +1,54 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { lastPublication } from '@/utils/publicationManager';
+---
+
+<Layout title='Revista Legein'>
+  <main class='flex md:flex-row flex-col justify-center items-center'>
+    <section class='m-20 grid gap-5 cursor-default'>
+      <h1
+        class='font-cormorant text-4xl md:text-6xl md:max-w-[40vw] leading-10 transition-all ease-in-out duration-300'
+      >
+        Revista de Estudiantes de Filosofía Legein
+      </h1>
+      <span
+        class='font-cormorant text-2xl md:text-4xl hover:text-red-800 transition-all ease-in-out duration-300'
+        >Universidad del Valle, Cali, Colombia</span
+      >
+
+      <p class='md:max-w-[30vw]'>
+        Revista profesional de filosofía dirigida por estudiantes, un proyecto
+        con ❤️ del <a
+          href='https://filosofia.univalle.edu.co/'
+          class='text-amber-700 hover:text-red-800 transition-all ease-in-out duration-300'
+          >Departamento de Filosofía.</a
+        >
+      </p>
+    </section>
+    <section>
+      <div
+        class='flex flex-col bg-green-300 lg:h-[360px] lg:w-[450px] h-[600px] w-[225px] m-auto p-2 font-cormorant text-center text-gray-900'
+      >
+        <h1 class='text-2xl'>
+          {lastPublication[0]?.publication}
+        </h1>
+        <hr class='border-1 border-gray-900' />
+        <div class='flex-grow flex-1 flex justify-center'>
+          <div class='grid lg:grid-cols-2 gap-4'>
+            {
+              lastPublication.map((pub, index) => {
+                if (index === 0) return;
+                return (
+                  <div class='flex flex-col gap-2 justify-center items-center'>
+                    <h2 class='font-bold text-base'>{pub.title}</h2>
+                    <p class='sm:text-lg text-base'>{pub.author}</p>
+                  </div>
+                );
+              })
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

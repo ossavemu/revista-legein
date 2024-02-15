@@ -1,0 +1,24 @@
+---
+import Moon from './icons/Moon.astro';
+import Sun from './icons/Sun.astro';
+
+import { publicationManager } from '@/utils/publicationManager';
+
+await publicationManager(true);
+---
+
+<button
+  id='theme-btn'
+  title='Toggles light & dark'
+  aria-label='auto'
+  aria-live='polite'
+  transition:persist
+>
+  <Moon /><Sun />
+</button>
+
+<script>
+  import { toggleTheme } from '@/utils/toggleTheme';
+
+  toggleTheme();
+</script>

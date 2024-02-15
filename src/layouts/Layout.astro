@@ -1,0 +1,77 @@
+---
+import Navbar from '@/components/Navbar.astro';
+import { ViewTransitions } from 'astro:transitions';
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang='es'>
+  <head>
+    <ViewTransitions />
+    <meta charset='UTF-8' />
+    <meta name='description' content='Revista Legein' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <title>{title}</title>
+    <script
+      is:inline
+      src='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js'
+    ></script>
+  </head>
+  <body class='text-gray-800 dark:text-gray-200'>
+    <div
+      class='absolute top-0 z-[-2] h-screen w-screen bg-white dark:bg-neutral-900'
+    >
+      <div
+        class='absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)] dark:bg-fuchsia-400 dark:bg-[size:20px_20px] dark:opacity-20 dark:blur-[100px]'
+      >
+      </div>
+    </div>
+    <Navbar />
+    <slot />
+
+    <style is:global>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+      :root {
+        color-scheme: light dark;
+      }
+      * {
+        min-width: 0;
+        font: inherit;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      img,
+      video,
+      svg {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      body {
+        font-family: 'Montserrat', sans-serif;
+      }
+      h1,
+      h2 {
+        text-wrap: balance;
+      }
+      p {
+        text-wrap: pretty;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: rgba(255, 255, 255, 0.9);
+        }
+      }
+    </style>
+  </body>
+</html>

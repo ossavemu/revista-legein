@@ -5,19 +5,15 @@ let remove: (() => void) | null = null;
 const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
 
 const getThemePreference = () => {
-  if (typeof localStorage !== 'undefined') {
-    return localStorage.getItem('theme') ?? 'system';
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (!localStorage.getItem('theme')) {
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
-};
+  if (typeof localStorage !== 'undefined') {
+    return localStorage.getItem('theme');
+  }
 
-const updateIcon = (themePreference: string) => {
-  document.querySelectorAll('.theme-toggle-icon').forEach(element => {
-    (element as HTMLElement).style.scale =
-      element.id === themePreference ? '1' : '0';
-  });
+  return isDark ? 'dark' : 'light';
 };
 
 const setIcon = (themePreference: string) => {
@@ -44,9 +40,8 @@ const updateTheme = () => {
     themePreference === 'dark' ||
     (themePreference === 'system' && matchMedia.matches);
 
-  updateIcon(themePreference);
+  setIcon(themePreference as string);
   document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
-  setIcon(themePreference);
 };
 
 export const toggleTheme = () => {

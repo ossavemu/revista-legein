@@ -1,6 +1,8 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { lastPublication } from '@/utils/publicationManager';
+
+const publication = lastPublication as Partial<Record<string, string>>[];
 ---
 
 <Layout title='Revista Legein'>
@@ -30,13 +32,13 @@ import { lastPublication } from '@/utils/publicationManager';
         class='flex flex-col bg-green-300 lg:h-[360px] lg:w-[450px] h-[600px] w-[225px] m-auto p-2 font-cormorant text-center text-gray-900'
       >
         <h1 class='text-2xl'>
-          {lastPublication[0]?.publication}
+          {publication[0]?.publication}
         </h1>
         <hr class='border-1 border-gray-900' />
         <div class='flex-grow flex-1 flex justify-center'>
           <div class='grid lg:grid-cols-2 gap-4'>
             {
-              lastPublication.map((pub, index) => {
+              publication.map((pub, index) => {
                 if (index === 0) return;
                 return (
                   <div class='flex flex-col gap-2 justify-center items-center'>

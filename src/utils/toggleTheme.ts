@@ -5,15 +5,10 @@ let remove: (() => void) | null = null;
 const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
 
 const getThemePreference = () => {
-  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if (!localStorage.getItem('theme')) {
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  }
-  if (typeof localStorage !== 'undefined') {
-    return localStorage.getItem('theme');
-  }
-
-  return isDark ? 'dark' : 'light';
+  const currentSystemTheme = matchMedia.matches ? 'dark' : 'light';
+  return typeof localStorage !== 'undefined'
+    ? localStorage.getItem('theme') ?? currentSystemTheme
+    : currentSystemTheme;
 };
 
 const setIcon = (themePreference: string) => {
@@ -21,8 +16,8 @@ const setIcon = (themePreference: string) => {
     moonBtn!.classList.add('hidden');
     sunBtn!.classList.remove('hidden');
   } else {
-    moonBtn!.classList.remove('hidden');
     sunBtn!.classList.add('hidden');
+    moonBtn!.classList.remove('hidden');
   }
 };
 

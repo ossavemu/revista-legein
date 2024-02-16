@@ -12,7 +12,9 @@ export const publicationManager = async (isLastPublication?: boolean) => {
   const publications = await Promise.all(
     publicationsPath
       .filter(isPublication)
-      .sort()
+      .sort(
+        (a, b) => parseInt(b.match(/\d+/)![0]) - parseInt(a.match(/\d+/)![0])
+      )
       .map(async publication => {
         const publicationPath = path.join(dataDirectory, publication);
         const publicationFile = await readFile(publicationPath, 'utf8');

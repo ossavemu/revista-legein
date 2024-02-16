@@ -1,3 +1,5 @@
+const bgDark = document.getElementById('bg-dark');
+const bgLight = document.getElementById('bg-light');
 const moonBtn = document.getElementById('moon-svg');
 const sunBtn = document.getElementById('sun-svg');
 
@@ -35,6 +37,8 @@ const updateTheme = () => {
 
   setIcon(themePreference as string);
   document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+  bgDark!.classList[isDark ? 'remove' : 'add']('hidden');
+  bgLight!.classList[isDark ? 'add' : 'remove']('hidden');
 };
 
 export const toggleTheme = () => {

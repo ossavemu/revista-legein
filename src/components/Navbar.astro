@@ -1,6 +1,10 @@
 ---
 import { Logo, Hamburger } from '@/components/icons/index.astro'
 import ToggleTheme from '@/components/ToggleTheme.astro'
+
+const { pathname } = Astro.url
+
+console.log(pathname)
 ---
 
 <nav

@@ -1,13 +1,17 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro'
+import { NAMES } from '@/constants/members'
+import Peeps from '@/components/Peeps.astro'
+
+const randomMemberNames = [...NAMES].sort(() => Math.random() - 0.5)
 ---
 
 <Layout title="Sobre nosotros">
-  <section>
-    <h1>Sobre nosotros</h1>
-    <p>
-      En esta sección se mostrará información sobre la empresa, su historia, su
-      misión, visión, valores, etc.
-    </p>
+  <slot name="head">
+    <link rel="stylesheet" href="/css-peeps.css" />
+  </slot>
+  <section class="md:max-w-xl m-auto pt-5 flex flex-col items-center gap-2">
+    <p>Aquí el comité editorial de la revista Legein.</p>
+    {randomMemberNames.map(name => <Peeps name={name} />)}
   </section>
 </Layout>

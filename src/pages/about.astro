@@ -3,7 +3,7 @@ import Layout from '@/layouts/Layout.astro'
 import { NAMES } from '@/constants/members'
 import Peeps from '@/components/Peeps.astro'
 
-const randomMemberNames = [...NAMES].sort(() => Math.random() - 0.5)
+const shuffledMemberNames = [...NAMES].sort(() => Math.random() - 0.5)
 ---
 
 <Layout title="Sobre nosotros">
@@ -12,6 +12,6 @@ const randomMemberNames = [...NAMES].sort(() => Math.random() - 0.5)
   </slot>
   <section class="md:max-w-xl m-auto pt-5 flex flex-col items-center gap-2">
     <p>Aquí el comité editorial de la revista Legein.</p>
-    {randomMemberNames.map(name => <Peeps name={name} />)}
+    {shuffledMemberNames.map(name => <Peeps name={name} />)}
   </section>
 </Layout>

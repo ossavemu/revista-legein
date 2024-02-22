@@ -23,6 +23,8 @@ module.exports = {
   },
   rules: {
     'comma-dangle': 'off',
-    '@typescript-eslint/comma-dangle': 'off'
+    '@typescript-eslint/comma-dangle': 'off',
+    'space-before-function-paren': 'off',
+    '@typescript-eslint/space-before-function-paren': 'off'
   }
 }

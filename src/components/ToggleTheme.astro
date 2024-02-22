@@ -13,7 +13,9 @@ import { Sun, Moon } from '@/components/icons/index.astro'
 </button>
 
 <script>
-  import { toggleTheme } from '@/utils/toggleTheme'
+  import { ThemeController } from '@/lib/theme/controller/index'
 
-  toggleTheme()
+  const controller = new ThemeController()
+
+  controller.toggleTheme()
 </script>

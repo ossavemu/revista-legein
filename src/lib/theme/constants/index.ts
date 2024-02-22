@@ -8,8 +8,6 @@ export const BgClassesString = {
   childDark: 'bg-fuchsia-400 bg-[size:20px_20px] opacity-20 blur-[100px]'
 } as const
 
-// BgClassesArray in an object with same keys as BgClassesString, but with values .split(' ')
-
 export const BgClassesArray = Object.keys(BgClassesString).reduce(
   (acc, key) => {
     return {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/indent */
-import { type NAMES } from '@/constants/members'
+import type { NAMES } from '@/constants/members'
 import type { BgClassesString } from '@/lib/theme/constants'
 
 export type Names = (typeof NAMES)[number]

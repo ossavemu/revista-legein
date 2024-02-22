@@ -2,7 +2,7 @@ import { BgClassesString } from '@/lib/theme/constants'
 
 const { light, childLight, dark, childDark } = BgClassesString
 
-export class Backgrounds extends HTMLElement {
+export class Background extends HTMLElement {
   readonly light: string
   readonly childLight: string
   readonly dark: string

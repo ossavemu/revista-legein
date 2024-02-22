@@ -50,21 +50,31 @@ export class ThemeController {
   public toggleTheme = (): void => {
     this.updateTheme()
 
-    const background = document.querySelector<Backgrounds>('background-app')
-
-    if (background == null) return
-
+    const bg = document.querySelector<Backgrounds>('background-app')
+    if (bg == null) return
     const changeBackground = (theme: string): void => {
-      if (theme === 'dark') {
-        background.innerHTML = background.template(
-          background.dark,
-          background.childDark
-        )
-      } else if (theme === 'light') {
-        background.innerHTML = background.template(
-          background.light,
-          background.childLight
-        )
+      const isDark = theme === 'dark'
+
+      const bgApp = document.getElementById('bg-app')
+      const bgChild = document.getElementById('bg-child')
+
+      if (bgApp == null || bgChild == null) return
+
+      const lightClass = bg.light.split(' ')
+      const lightChildClass = bg.childLight.split(' ')
+      const darkClass = bg.dark.split(' ')
+      const darkChildClass = bg.childDark.split(' ')
+
+      if (isDark) {
+        bgApp.classList.remove(...lightClass)
+        bgApp.classList.add(...darkClass)
+        bgChild.classList.remove(...lightChildClass)
+        bgChild.classList.add(...darkChildClass)
+      } else {
+        bgApp.classList.remove(...darkClass)
+        bgApp.classList.add(...lightClass)
+        bgChild.classList.remove(...darkChildClass)
+        bgChild.classList.add(...lightChildClass)
       }
     }
 

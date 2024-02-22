@@ -14,15 +14,15 @@ export class Backgrounds extends HTMLElement {
   }
 
   public template(theme: string, child: string): string {
-    const id = theme === this.light ? 'bg-light' : 'bg-dark'
     return `
       <div
         class="fixed inset-0 -z-10 h-full w-ful ${theme}"
-        id="${id}"
+        id="bg-app"
         transition:persist
       >
         <div
           class="absolute inset-0 ${child}"
+          id="bg-child"
         >
         </div>
       </div>

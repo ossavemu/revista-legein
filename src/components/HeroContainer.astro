@@ -5,7 +5,9 @@ import type { Publications } from '@/lib/types'
 const publications = lastPublication as Publications[]
 ---
 
-<main class="grid lg:grid-cols-2 max-w-screen-xl m-auto">
+<main
+  class="grid lg:grid-cols-2 max-w-screen-xl m-auto items-center justify-center"
+>
   <section class="m-20 grid gap-5 cursor-default">
     <h1
       class="font-cormorant text-4xl md:text-6xl md:max-w-[40vw] leading-10 transition-all ease-in-out duration-300"
@@ -28,7 +30,7 @@ const publications = lastPublication as Publications[]
   </section>
   <section class="mt-10">
     <div
-      class="grid bg-green-300 py-2 px-10 font-cormorant text-center text-gray-900 border-2 border-neutral-400 max-w-fit m-auto"
+      class="grid bg-green-300 py-2 mx-10 font-cormorant text-center text-gray-900 border-2 border-neutral-400 max-w-[900vw] my-auto"
     >
       <h1 class="lg:text-3xl text-2xl font-semibold">
         {publications[0]?.publication}

@@ -1,4 +1,4 @@
-import type { Backgrounds } from '@/lib/theme/components/backgrounds'
+import { BgClassesArray } from '@/lib/theme/constants'
 
 export class ThemeController {
   private readonly moonBtn: HTMLElement | null
@@ -50,8 +50,6 @@ export class ThemeController {
   public toggleTheme = (): void => {
     this.updateTheme()
 
-    const bg = document.querySelector<Backgrounds>('background-app')
-    if (bg == null) return
     const changeBackground = (theme: string): void => {
       const isDark = theme === 'dark'
 
@@ -60,21 +58,18 @@ export class ThemeController {
 
       if (bgApp == null || bgChild == null) return
 
-      const lightClass = bg.light.split(' ')
-      const lightChildClass = bg.childLight.split(' ')
-      const darkClass = bg.dark.split(' ')
-      const darkChildClass = bg.childDark.split(' ')
+      const { light, childLight, dark, childDark } = BgClassesArray
 
       if (isDark) {
-        bgApp.classList.remove(...lightClass)
-        bgApp.classList.add(...darkClass)
-        bgChild.classList.remove(...lightChildClass)
-        bgChild.classList.add(...darkChildClass)
+        bgApp.classList.remove(...light)
+        bgApp.classList.add(...dark)
+        bgChild.classList.remove(...childLight)
+        bgChild.classList.add(...childDark)
       } else {
-        bgApp.classList.remove(...darkClass)
-        bgApp.classList.add(...lightClass)
-        bgChild.classList.remove(...darkChildClass)
-        bgChild.classList.add(...lightChildClass)
+        bgApp.classList.remove(...dark)
+        bgApp.classList.add(...light)
+        bgChild.classList.remove(...childDark)
+        bgChild.classList.add(...childLight)
       }
     }
 

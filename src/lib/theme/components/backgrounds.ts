@@ -1,3 +1,7 @@
+import { BgClassesString } from '@/lib/theme/constants'
+
+const { light, childLight, dark, childDark } = BgClassesString
+
 export class Backgrounds extends HTMLElement {
   readonly light: string
   readonly childLight: string
@@ -5,23 +9,21 @@ export class Backgrounds extends HTMLElement {
   readonly childDark: string
   constructor() {
     super()
-    this.light = 'bg-[rgba(255,255,255,0.9)] bg-[size:6rem_4rem]'
-    this.childLight =
-      'bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]'
-    this.dark = 'bg-neutral-900'
-    this.childDark =
-      'bg-fuchsia-400 bg-[size:20px_20px] opacity-20 blur-[100px]'
+    this.light = light
+    this.childLight = childLight
+    this.dark = dark
+    this.childDark = childDark
   }
 
   public template(theme: string, child: string): string {
     return `
       <div
-        class="fixed inset-0 -z-10 h-full w-ful ${theme}"
+        class="fixed inset-0 -z-10 h-full w-ful transition-all ease-in-out duration-300 ${theme}"
         id="bg-app"
         transition:persist
       >
         <div
-          class="absolute inset-0 ${child}"
+          class="absolute inset-0 transition-all ease-in-out duration-300 ${child}"
           id="bg-child"
         >
         </div>

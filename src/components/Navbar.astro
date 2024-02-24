@@ -43,9 +43,14 @@ import { PATHS, MESSAGES } from '@/constants/index'
 
 <script>
   const isCurrentPathClasses =
-    'dark:text-amber-500 dark:hover:text-white text-amber-700 hover:text-gray-600'
+    'dark:text-amber-500 dark:hover:text-white text-amber-700 hover:text-gray-600'.split(
+      ' '
+    )
   const normalClasses =
-    'dark:text-white dark:hover:text-amber-500 hover:text-amber-700 text-gray-600'
+    'dark:text-white dark:hover:text-amber-500 hover:text-amber-700 text-gray-600'.split(
+      ' '
+    )
+
   const currentPath = () => location.pathname
   const anchorPath = (href: string) => new URL(href).pathname
 
@@ -53,24 +58,25 @@ import { PATHS, MESSAGES } from '@/constants/index'
 
   const addStyles = (anchor: HTMLAnchorElement) => {
     const isCurrentPath = () => anchorPath(anchor.href) === currentPath()
+
     if (isCurrentPath()) {
-      anchor.classList.remove(...normalClasses.split(' '))
-      anchor.classList.add(...isCurrentPathClasses.split(' '))
+      anchor.classList.remove(...normalClasses)
+      anchor.classList.add(...isCurrentPathClasses)
     } else {
-      anchor.classList.remove(...isCurrentPathClasses.split(' '))
-      anchor.classList.add(...normalClasses.split(' '))
+      anchor.classList.remove(...isCurrentPathClasses)
+      anchor.classList.add(...normalClasses)
     }
   }
 
-  const addToAnchors = () =>
+  const addStylesToAnchors = () =>
     anchors.forEach((anchor) => {
       addStyles(anchor as HTMLAnchorElement)
     })
 
   document.addEventListener('DOMContentLoaded', () => {
-    addToAnchors()
+    addStylesToAnchors()
   })
   document.addEventListener('astro:after-swap', () => {
-    addToAnchors()
+    addStylesToAnchors()
   })
 </script>

@@ -1,23 +1,12 @@
 ---
 import { Logo, Hamburger } from '@/components/icons/index.astro'
 import ToggleTheme from '@/components/ToggleTheme.astro'
-import { PATHS } from '@/constants/paths'
-import type { Paths } from '@/lib/types'
-
-const { pathname } = Astro.url
-
-const isCurrentPageColor =
-  'dark:text-amber-500 dark:hover:text-white text-amber-700 hover:text-gray-600'
-
-const isCurrentPage = (path: Paths) => {
-  return pathname === path
-    ? isCurrentPageColor
-    : 'dark:text-white dark:hover:text-amber-500 hover:text-amber-700 text-gray-600'
-}
+import { PATHS, MESSAGES } from '@/constants/index'
 ---
 
 <nav
-  class="sticky inset-0 bg-[rgba(255,255,255,0.2)] dark:bg-[rgba(0,0,0,0.2)] transition-all ease-in-out duration-300 z-50 shadow-md dark:shadow-none"
+  class="bg-[rgba(255,255,255,0.2)] dark:bg-[rgba(0,0,0,0.2)] z-50 shadow-md dark:shadow-none"
+  transition:persist
 >
   <div
     class="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto p-4"
@@ -32,24 +21,13 @@ const isCurrentPage = (path: Paths) => {
         <ul
           class="flex font-medium p-4 md:p-0 mt-4 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
         >
-          <li>
-            <a href={PATHS.HOME} class={isCurrentPage(PATHS.HOME)}>Inicio</a>
-          </li>
-          <li>
-            <a href={PATHS.ABOUT} class={isCurrentPage(PATHS.ABOUT)}
-              >Sobre nosotros</a
-            >
-          </li>
-          <li>
-            <a href={PATHS.PUBLISH} class={isCurrentPage(PATHS.PUBLISH)}
-              >Publica con nosotros</a
-            >
-          </li>
-          <li>
-            <a href={PATHS.LIBRARY} class={isCurrentPage(PATHS.LIBRARY)}
-              >Biblioteca Legein</a
-            >
-          </li>
+          {
+            Object.values(MESSAGES).map((message, index) => (
+              <li>
+                <a href={Object.values(PATHS)[index] ?? '#'}>{message}</a>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
@@ -57,36 +35,42 @@ const isCurrentPage = (path: Paths) => {
   </div>
 </nav>
 
-<style is:global>
-  nav button {
-    @apply p-1;
-  }
-  nav button svg {
-    @apply h-6 w-6 hover:fill-slate-600;
-    @apply h-6 w-6;
-  }
+<style>
   li > a {
     @apply py-2 px-3 md:p-0;
-  }
-  #theme-btn {
-    @apply p-3 sm:p-1;
-  }
-  #theme-btn svg {
-    @apply scale-125 hover:rotate-12 sm:scale-100;
-  }
-
-  nav.scrolled {
-    @apply bg-[rgba(255,255,255,0.9)] dark:bg-[rgba(0,0,0,0.6)];
   }
 </style>
 
 <script>
-  const nav = document.querySelector('nav') as HTMLElement
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      nav.classList.add('scrolled')
+  const isCurrentPathClasses =
+    'dark:text-amber-500 dark:hover:text-white text-amber-700 hover:text-gray-600'
+  const normalClasses =
+    'dark:text-white dark:hover:text-amber-500 hover:text-amber-700 text-gray-600'
+  const currentPath = () => location.pathname
+  const anchorPath = (href: string) => new URL(href).pathname
+
+  const anchors = document.querySelectorAll('nav li a')
+
+  const addStyles = (anchor: HTMLAnchorElement) => {
+    const isCurrentPath = () => anchorPath(anchor.href) === currentPath()
+    if (isCurrentPath()) {
+      anchor.classList.remove(...normalClasses.split(' '))
+      anchor.classList.add(...isCurrentPathClasses.split(' '))
     } else {
-      nav.classList.remove('scrolled')
+      anchor.classList.remove(...isCurrentPathClasses.split(' '))
+      anchor.classList.add(...normalClasses.split(' '))
     }
+  }
+
+  const addToAnchors = () =>
+    anchors.forEach((anchor) => {
+      addStyles(anchor as HTMLAnchorElement)
+    })
+
+  document.addEventListener('DOMContentLoaded', () => {
+    addToAnchors()
+  })
+  document.addEventListener('astro:after-swap', () => {
+    addToAnchors()
   })
 </script>

@@ -3,7 +3,6 @@ import { Sun, Moon } from '@/components/icons/index.astro'
 ---
 
 <button
-  id="theme-btn"
   title="Toggles light & dark"
   aria-label="auto"
   aria-live="polite"
@@ -11,6 +10,12 @@ import { Sun, Moon } from '@/components/icons/index.astro'
 >
   <Sun /><Moon />
 </button>
+
+<style>
+  button {
+    @apply p-3 sm:p-1;
+  }
+</style>
 
 <script>
   import { ThemeController } from '@/lib/theme/controller/index'

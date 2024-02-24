@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/indent */
-import type { NAMES } from '@/constants/members'
-import type { BgClassesString } from '@/lib/theme/constants'
 import type { ValueOf } from 'node_modules/astro/dist/type-utils'
+
+import type { NAMES } from '@/constants/members'
 import type { PATHS } from '@/constants/paths'
+import type { BgClassesString } from '@/lib/theme/constants'
 
 export type Names = (typeof NAMES)[number]
 

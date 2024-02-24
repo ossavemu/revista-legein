@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro'
 import { NAMES } from '@/constants/members'
 import Peeps from '@/components/Peeps.astro'
+import Chip from '@/components/Chip.astro'
 
 const shuffledMemberNames = [...NAMES].sort(() => Math.random() - 0.5)
 ---
@@ -10,8 +11,69 @@ const shuffledMemberNames = [...NAMES].sort(() => Math.random() - 0.5)
   <slot name="head">
     <link rel="stylesheet" href="/css-peeps.css" />
   </slot>
-  <section class="md:max-w-xl m-auto pt-5 flex flex-col items-center gap-2">
-    <p>Aquí el comité editorial de la revista Legein.</p>
-    {shuffledMemberNames.map(name => <Peeps name={name} />)}
+  <section class="md:max-w-2xl pt-5 md:mx-auto mx-5 flex flex-col gap-2">
+    <article class="mx-4 my-5 md:text-lg">
+      <h1 class="text-3xl md:text-4xl py-4 font-semibold">Sobre nosotros</h1>
+      <p>
+        Légein es la revista de estudiantes de pregrado en Filosofía de la
+        Universidad del Valle, ubicada en Cali, Colombia. Nuestra revista es el
+        ejercicio del logos; es el decir, es la consigna del pensamiento en la
+        palabra que posibilita la resistencia al tiempo. Es un espacio donde los
+        estudiantes expresan sus pensamientos y propuestas.
+      </p><p>
+        Légein va más allá de ser solo palabras, se convierte en una plataforma
+        que une diversas voces. Todos tenemos voz cuando alguien nos escucha y
+        responde. La revista representa tanto la comunidad como el individuo, y
+        su espíritu radica en convertir el pensamiento en acción.
+      </p>
+    </article>
+    <>
+      <ul>
+        <li>
+          <Chip>Ubicación</Chip><p>
+            Estamos ubicados en la Universidad del Valle, Edificio D10, Oficina
+            3001 (revista Praxis filosófica), Cali-Colombia.
+          </p>
+        </li>
+
+        <li>
+          <Chip>Contacto</Chip><p>
+            Para cualquier consulta o información, puede contactarnos a través
+            de nuestro correo electrónico: revistalegein@gmail.com
+          </p>
+        </li>
+      </ul>
+
+      <hr class="w-full my-5 border-gray-600" />
+
+      <h1 class="text-3xl md:text-4xl py-4 font-semibold">Nuestro equipo</h1>
+      <p class="md:text-lg">
+        Légein es un proyecto que se realiza gracias al esfuerzo y dedicación de
+        un grupo de estudiantes de pregrado en Filosofía de la Universidad del
+        Valle. A continuación, presentamos a los miembros de nuestro equipo:
+      </p>
+      <picture class="flex items-center justify-center pb-10">
+        {
+          shuffledMemberNames.map((name) => (
+            <div class="flex items-center justify-center">
+              <Peeps name={name} />
+              <h3 class="text-lg md:text-xl font-semibold">
+                {name.toLocaleUpperCase()}
+              </h3>
+            </div>
+          ))
+        }
+      </picture>
+    </>
   </section>
+
+  <style>
+    li {
+      @apply flex flex-col items-center md:flex-row gap-5 pb-5 mx-10;
+    }
+
+    li > p {
+      @apply max-w-md;
+    }
+  </style>
 </Layout>

@@ -47,40 +47,33 @@ export class ThemeController {
     document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
   }
 
+  private readonly changeBackground = (theme: string): void => {
+    const isDark = theme === 'dark'
+
+    const bgApp = document.getElementById('bg-app')
+    const bgChild = document.getElementById('bg-child')
+
+    if (bgApp == null || bgChild == null) return
+
+    const { light, childLight, dark, childDark } = BgClassesArray
+
+    bgApp.classList[isDark ? 'remove' : 'add'](...light)
+    bgApp.classList[isDark ? 'add' : 'remove'](...dark)
+    bgChild.classList[isDark ? 'remove' : 'add'](...childLight)
+    bgChild.classList[isDark ? 'add' : 'remove'](...childDark)
+  }
+
   public toggleTheme = (): void => {
     this.updateTheme()
 
-    const changeBackground = (theme: string): void => {
-      const isDark = theme === 'dark'
-
-      const bgApp = document.getElementById('bg-app')
-      const bgChild = document.getElementById('bg-child')
-
-      if (bgApp == null || bgChild == null) return
-
-      const { light, childLight, dark, childDark } = BgClassesArray
-
-      if (isDark) {
-        bgApp.classList.remove(...light)
-        bgApp.classList.add(...dark)
-        bgChild.classList.remove(...childLight)
-        bgChild.classList.add(...childDark)
-      } else {
-        bgApp.classList.remove(...dark)
-        bgApp.classList.add(...light)
-        bgChild.classList.remove(...childDark)
-        bgChild.classList.add(...childLight)
-      }
-    }
-
     this.moonBtn?.addEventListener('click', () => {
       localStorage.setItem('theme', 'dark')
-      changeBackground('dark')
+      this.changeBackground('dark')
       this.updateTheme()
     })
     this.sunBtn?.addEventListener('click', () => {
       localStorage.setItem('theme', 'light')
-      changeBackground('light')
+      this.changeBackground('light')
       this.updateTheme()
     })
 

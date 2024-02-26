@@ -1,4 +1,4 @@
-import { BgClassesArray } from '@/lib/theme/constants'
+import { backgroundSetter } from '../utils/background'
 
 export class ThemeController {
   private readonly moonBtn: HTMLElement | null
@@ -47,46 +47,21 @@ export class ThemeController {
     document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
   }
 
-  private readonly changeBackground = (): void => {
-    const themePreference = this.getThemePreference()
-    const isDark = themePreference === 'dark'
-
-    const $body = document.body
-
-    if (isDark) {
-      $body.style.backgroundColor = 'rgba(0, 0, 0, 0.01)'
-    } else {
-      $body.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'
-    }
-
-    const bgApp = document.getElementById('bg-app')
-    const bgChild = document.getElementById('bg-child')
-
-    if (bgApp == null || bgChild == null) return
-
-    const { light, childLight, dark, childDark } = BgClassesArray
-
-    bgApp.classList[isDark ? 'remove' : 'add'](...light)
-    bgApp.classList[isDark ? 'add' : 'remove'](...dark)
-    bgChild.classList[isDark ? 'remove' : 'add'](...childLight)
-    bgChild.classList[isDark ? 'add' : 'remove'](...childDark)
-  }
-
   public toggleTheme = (): void => {
     this.updateTheme()
 
     this.moonBtn?.addEventListener('click', () => {
       localStorage.setItem('theme', 'dark')
-      this.changeBackground()
+      backgroundSetter()
       this.updateTheme()
     })
     this.sunBtn?.addEventListener('click', () => {
       localStorage.setItem('theme', 'light')
-      this.changeBackground()
+      backgroundSetter()
       this.updateTheme()
     })
 
     document.addEventListener('astro:after-swap', this.updateTheme)
-    document.addEventListener('astro:after-swap', this.changeBackground)
+    document.addEventListener('astro:after-swap', backgroundSetter)
   }
 }

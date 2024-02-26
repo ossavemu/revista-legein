@@ -31,21 +31,22 @@ const publications = lastPublication as Publications[]
   </section>
   <section class="mt-10">
     <div
-      class="grid bg-green-300 py-2 mx-10 font-cormorant text-center text-gray-900 border-2 border-neutral-400 max-w-[900vw] my-auto"
+      class="grid bg-green-300 py-2 mx-10 font-cormorant text-center text-gray-900 border-2 border-neutral-400 my-auto"
     >
       <h1 class="lg:text-3xl text-2xl font-semibold">
         {publications[0]?.publication}
       </h1>
-      <hr class="border-1 border-gray-900 pb-4" />
+
+      <hr class="border-1 border-gray-900 m-2" />
 
       <div class="grid lg:grid-cols-2 gap-2">
         {
           publications.map((pub, index) => {
             if (index === 0) return
             return (
-              <div class="flex flex-col gap-2 justify-center items-center pb-4">
-                <h2 class="lg:text-xl font-bold text-base">{pub.title}</h2>
-                <p class="lg:text-lg text-base">{pub.author}</p>
+              <div class="flex flex-col gap-2 justify-center items-center pb-4 px-4">
+                <h2 class="lg:text-2xl font-bold text-lg">{pub.title}</h2>
+                <p class="lg:text-lg text-base italic">{pub.author}</p>
               </div>
             )
           })

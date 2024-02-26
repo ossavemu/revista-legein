@@ -9,7 +9,7 @@ interface Props {
 const { name } = Astro.props
 ---
 
-<a class={peeps[name]} href="" id={name} data-css-peeps></a>
+<a class={peeps[name]} href={'#' + name} id={name} data-css-peeps></a>
 <style>
   :root {
     --peep-width: 130px;

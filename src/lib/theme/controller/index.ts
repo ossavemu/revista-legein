@@ -47,8 +47,17 @@ export class ThemeController {
     document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
   }
 
-  private readonly changeBackground = (theme: string): void => {
-    const isDark = theme === 'dark'
+  private readonly changeBackground = (): void => {
+    const themePreference = this.getThemePreference()
+    const isDark = themePreference === 'dark'
+
+    const $body = document.body
+
+    if (isDark) {
+      $body.style.backgroundColor = 'rgba(0, 0, 0, 0.01)'
+    } else {
+      $body.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'
+    }
 
     const bgApp = document.getElementById('bg-app')
     const bgChild = document.getElementById('bg-child')
@@ -68,15 +77,16 @@ export class ThemeController {
 
     this.moonBtn?.addEventListener('click', () => {
       localStorage.setItem('theme', 'dark')
-      this.changeBackground('dark')
+      this.changeBackground()
       this.updateTheme()
     })
     this.sunBtn?.addEventListener('click', () => {
       localStorage.setItem('theme', 'light')
-      this.changeBackground('light')
+      this.changeBackground()
       this.updateTheme()
     })
 
     document.addEventListener('astro:after-swap', this.updateTheme)
+    document.addEventListener('astro:after-swap', this.changeBackground)
   }
 }

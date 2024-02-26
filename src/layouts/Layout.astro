@@ -2,7 +2,9 @@
 import Navbar from '@/components/Navbar.astro'
 import Footer from '@/components/Footer.astro'
 import Background from '@/components/layout/Background.astro'
+
 import { ViewTransitions } from 'astro:transitions'
+
 interface Props {
   title: string
 }
@@ -25,7 +27,7 @@ const { title } = Astro.props
   <body class="text-gray-800 dark:text-gray-200 flex flex-col min-h-screen">
     <Background transition:persist />
 
-    <Navbar />
+    <Navbar transition:persist />
     <main class="flex-grow"><slot /></main>
 
     <Footer class="flex-grow-0" />
@@ -45,12 +47,30 @@ const { title } = Astro.props
       *::after {
         box-sizing: border-box;
       }
-      img,
-      video,
-      svg {
-        display: block;
-        max-width: 100%;
-        height: auto;
+      ::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: gray;
+        border: 1px solid transparent;
+        background-clip: content-box;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-corner {
+        background: transparent;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        overscroll-behavior: none;
       }
       body {
         font-family: 'Montserrat', sans-serif;
@@ -61,11 +81,15 @@ const { title } = Astro.props
           background-color: rgba(0, 0, 0, 0.9);
         }
       }
-      @media (prefers-color-scheme: light) {
-        body {
-          background-color: inherit;
-        }
+
+      img,
+      video,
+      svg {
+        display: block;
+        max-width: 100%;
+        height: auto;
       }
+
       h1,
       h2 {
         text-wrap: balance;

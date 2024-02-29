@@ -1,39 +1,16 @@
 import { backgroundSetter } from '../utils/background'
+import { setIcon } from '../utils/icon'
 
 export class ThemeController {
-  private readonly moonBtn: HTMLElement | null
-  private readonly sunBtn: HTMLElement | null
   private remove: (() => void) | null
   private readonly matchMedia: MediaQueryList
 
   constructor() {
-    this.moonBtn = document.getElementById('moon-svg')
-    this.sunBtn = document.getElementById('sun-svg')
     this.remove = null
     this.matchMedia = window.matchMedia('(prefers-color-scheme: dark)')
   }
 
-  private readonly getThemePreference = (): string => {
-    const currentSystemTheme = this.matchMedia.matches ? 'dark' : 'light'
-    return typeof localStorage !== 'undefined'
-      ? localStorage.getItem('theme') ?? currentSystemTheme
-      : currentSystemTheme
-  }
-
-  private readonly setIcon = (themePreference: string): void => {
-    if (this.moonBtn == null || this.sunBtn == null) return
-    this.moonBtn.classList[themePreference === 'dark' ? 'add' : 'remove'](
-      'hidden'
-    )
-    this.sunBtn.classList[themePreference === 'light' ? 'add' : 'remove'](
-      'hidden'
-    )
-  }
-
   private readonly updateTheme = (): void => {
-    const themePreference = this.getThemePreference()
-    const isDark = themePreference === 'dark'
-
     if (this.remove != null) {
       this.remove()
     }
@@ -42,26 +19,18 @@ export class ThemeController {
       this.matchMedia.removeEventListener('change', this.updateTheme)
     }
 
-    this.setIcon(themePreference)
-
-    document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+    backgroundSetter(window.getThemePreference() === 'dark')
+    setIcon(window.getThemePreference() === 'dark')
+    document.documentElement.classList.toggle(
+      'dark',
+      window.getThemePreference() === 'dark'
+    )
   }
 
   public toggleTheme = (): void => {
     this.updateTheme()
 
-    this.moonBtn?.addEventListener('click', () => {
-      localStorage.setItem('theme', 'dark')
-      backgroundSetter()
-      this.updateTheme()
-    })
-    this.sunBtn?.addEventListener('click', () => {
-      localStorage.setItem('theme', 'light')
-      backgroundSetter()
-      this.updateTheme()
-    })
-
+    window.addEventListener('storage', this.updateTheme)
     document.addEventListener('astro:after-swap', this.updateTheme)
-    document.addEventListener('astro:after-swap', backgroundSetter)
   }
 }

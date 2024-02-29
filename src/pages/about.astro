@@ -27,22 +27,52 @@ const shuffledMemberNames = [...NAMES].sort(() => Math.random() - 0.5)
         su espíritu radica en convertir el pensamiento en acción.
       </p>
     </article>
-
-    <ul>
-      <li>
-        <Chip>Ubicación</Chip><p>
-          Estamos ubicados en la Universidad del Valle, Edificio D10, Oficina
-          3001 (revista Praxis filosófica), Cali-Colombia.
-        </p>
-      </li>
-
-      <li>
-        <Chip>Contacto</Chip><p>
-          Para cualquier consulta o información, puede contactarnos a través de
-          nuestro correo electrónico: revistalegein@gmail.com
-        </p>
-      </li>
-    </ul>
+    <article>
+      <>
+        <li>
+          <div class="w-28">
+            <Chip>Ubicación</Chip>
+          </div>
+          <p>
+            Estamos ubicados en la Universidad del Valle, Edificio D10, Oficina
+            3001 (revista Praxis filosófica), Cali-Colombia.
+          </p>
+        </li>
+        <li>
+          <div class="w-28">
+            <Chip>Redes Sociales</Chip>
+          </div><p>
+            Encuéntranos en <a
+              href="https://www.instagram.com/revistalegein/"
+              target="_blank"
+              class="font-bold text-blue-500">Instagram @REVISTA_LEGEIN</a
+            >
+          </p>
+        </li>
+        <li>
+          <div
+            class="flex justify-center items-center transition-all ease-in-out duration-300 hover:scale-110 mx-auto"
+          >
+            <a href="https://www.instagram.com/revistalegein/" target="_blank">
+              <img src="ig.webp" alt="Instagram" class="w-40 h-40" />
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="w-28">
+            <Chip>Contacto</Chip>
+          </div><p>
+            Para cualquier consulta o información, puede contactarnos a través
+            de nuestro correo electrónico: <a
+              href="mailto:revistalegein@gmail.com"
+              target="_blank"
+              class="font-bold text-blue-500"
+              >revistalegein@gmail.com
+            </a>
+          </p>
+        </li>
+      </>
+    </article>
 
     <hr class="w-full my-2 border-gray-600" />
     <article class="mx-4 my-5 md:text-lg">
@@ -53,12 +83,14 @@ const shuffledMemberNames = [...NAMES].sort(() => Math.random() - 0.5)
         Valle. A continuación, presentamos a los miembros de nuestro equipo:
       </p>
     </article>
-    <picture class="flex items-center justify-center pb-10">
+    <picture
+      class="flex flex-col lg:flex-row items-center justify-center pb-10"
+    >
       {
         shuffledMemberNames.map((name) => (
-          <div class="flex items-center justify-center">
+          <div class="flex flex-col items-center justify-center">
             <Peeps name={name} />
-            <h3 class="text-lg md:text-xl font-semibold">
+            <h3 class="text-lg text-center md:text-xl font-semibold">
               {name.toLocaleUpperCase()}
             </h3>
           </div>

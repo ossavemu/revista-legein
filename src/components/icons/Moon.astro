@@ -1,4 +1,4 @@
-<div class="hidden" id="moon-svg">
+<div class="hidden" id="moon">
   <svg xmlns="http://www.w3.org/2000/svg">
     <path
       fill="black"
@@ -7,7 +7,7 @@
   >
 </div>
 <style>
-  svg {
-    @apply scale-125 hover:rotate-12 sm:scale-100 h-6 w-6 hover:fill-slate-600;
+  svg:has(:not(.hidden)) {
+    @apply scale-125 hover:rotate-12 sm:scale-100 h-6 w-6;
   }
 </style>

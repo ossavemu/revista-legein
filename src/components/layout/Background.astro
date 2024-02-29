@@ -1,11 +1,9 @@
-<background-app transition:persist>
-  <div id="bg-app">
-    <div id="bg-child"></div>
-  </div>
-</background-app>
+<div id="bg" transition:persist>
+  <div id="bg-child"></div>
+</div>
 
 <style>
-  #bg-app {
+  #bg {
     @apply fixed inset-0 -z-10 h-full w-full transition-all ease-in-out duration-300;
   }
 
@@ -13,9 +11,3 @@
     @apply absolute inset-0 transition-all ease-in-out duration-300;
   }
 </style>
-
-<script>
-  import { Background } from '@/lib/theme/components/background'
-
-  customElements.define('background-app', Background)
-</script>

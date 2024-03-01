@@ -1,13 +1,12 @@
 <div id="bg" transition:persist>
   <div id="bg-child"></div>
+  <style>
+    #bg {
+      @apply fixed inset-0 -z-10 h-full w-full transition-all ease-in-out duration-300;
+    }
+
+    #bg-child {
+      @apply absolute inset-0 transition-all ease-in-out duration-300;
+    }
+  </style>
 </div>
-
-<style>
-  #bg {
-    @apply fixed inset-0 -z-10 h-full w-full transition-all ease-in-out duration-300;
-  }
-
-  #bg-child {
-    @apply absolute inset-0 transition-all ease-in-out duration-300;
-  }
-</style>

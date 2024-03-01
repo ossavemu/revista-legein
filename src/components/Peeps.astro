@@ -9,13 +9,14 @@ interface Props {
 const { name } = Astro.props
 ---
 
-<a class={peeps[name]} href={'#' + name} id={name} data-css-peeps></a>
-<style>
-  :root {
-    --peep-width: 130px;
-    --peep-height: 115px;
-  }
-  a {
-    @apply block w-[calc(var(--peep-width)*0.7)] h-[calc(var(--peep-height)*0.7)] md:w-[var(--peep-width)] md:h-[var(--peep-width)] bg-transparent;
-  }
-</style>
+<a class={peeps[name]} href={'#' + name} id={name} data-css-peeps
+  ><style>
+    :root {
+      --peep-width: 130px;
+      --peep-height: 115px;
+    }
+    a {
+      @apply block w-[calc(var(--peep-width)*0.7)] h-[calc(var(--peep-height)*0.7)] md:w-[var(--peep-width)] md:h-[var(--peep-width)] bg-transparent;
+    }
+  </style>
+</a>

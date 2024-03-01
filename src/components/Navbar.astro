@@ -35,50 +35,49 @@ import Navmodal from './NavModal.astro'
     </div>
     <ToggleTheme />
   </div>
-</nav>
-
-<style>
-  li > a {
-    @apply py-2 px-3 md:p-0;
-  }
-</style>
-
-<script>
-  const isCurrentPathClasses =
-    'dark:text-amber-500 dark:hover:text-white text-amber-700 hover:text-gray-600'.split(
-      ' '
-    )
-  const normalClasses =
-    'dark:text-white dark:hover:text-amber-500 hover:text-amber-700 text-gray-600'.split(
-      ' '
-    )
-
-  const currentPath = () => location.pathname
-  const anchorPath = (href: string) => new URL(href).pathname
-
-  const anchors = document.querySelectorAll('nav li a')
-
-  const addStyles = (anchor: HTMLAnchorElement) => {
-    const isCurrentPath = () => anchorPath(anchor.href) === currentPath()
-
-    if (isCurrentPath()) {
-      anchor.classList.remove(...normalClasses)
-      anchor.classList.add(...isCurrentPathClasses)
-    } else {
-      anchor.classList.remove(...isCurrentPathClasses)
-      anchor.classList.add(...normalClasses)
+  <style>
+    li > a {
+      @apply py-2 px-3 md:p-0;
     }
-  }
+  </style>
 
-  const addStylesToAnchors = () =>
-    anchors.forEach((anchor) => {
-      addStyles(anchor as HTMLAnchorElement)
+  <script is:inline defer>
+    const isCurrentPathClasses =
+      'dark:text-amber-500 dark:hover:text-white text-amber-700 hover:text-gray-600'.split(
+        ' '
+      )
+    const normalClasses =
+      'dark:text-white dark:hover:text-amber-500 hover:text-amber-700 text-gray-600'.split(
+        ' '
+      )
+
+    const currentPath = () => location.pathname
+    const anchorPath = (href) => new URL(href).pathname
+
+    const anchors = document.querySelectorAll('nav li a')
+
+    const addStyles = (anchor) => {
+      const isCurrentPath = () => anchorPath(anchor.href) === currentPath()
+
+      if (isCurrentPath()) {
+        anchor.classList.remove(...normalClasses)
+        anchor.classList.add(...isCurrentPathClasses)
+      } else {
+        anchor.classList.remove(...isCurrentPathClasses)
+        anchor.classList.add(...normalClasses)
+      }
+    }
+
+    const addStylesToAnchors = () =>
+      anchors.forEach((anchor) => {
+        addStyles(anchor)
+      })
+
+    document.addEventListener('DOMContentLoaded', () => {
+      addStylesToAnchors()
     })
-
-  document.addEventListener('DOMContentLoaded', () => {
-    addStylesToAnchors()
-  })
-  document.addEventListener('astro:after-swap', () => {
-    addStylesToAnchors()
-  })
-</script>
+    document.addEventListener('astro:after-swap', () => {
+      addStylesToAnchors()
+    })
+  </script>
+</nav>

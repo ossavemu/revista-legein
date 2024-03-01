@@ -1,5 +1,7 @@
 ---
 import { Sun, Moon } from '@/components/icons/index.astro'
+import { BgClassesArray } from '@/lib/theme/constants'
+const { light, childLight, dark, childDark } = BgClassesArray
 ---
 
 <button
@@ -9,18 +11,76 @@ import { Sun, Moon } from '@/components/icons/index.astro'
   transition:persist
 >
   <Sun /><Moon />
+  <style>
+    button {
+      @apply p-3 sm:p-1;
+    }
+  </style>
+
+  <script define:vars={{ light, childLight, dark, childDark }} is:inline>
+    let remove = null
+    const matchMedia = window.matchMedia('(prefers-color-scheme: dark)')
+
+    const backgroundSetter = (isDark) => {
+      const $bg = document.getElementById('bg')
+      const $bgChild = document.getElementById('bg-child')
+
+      const toggleBgTheme = (el, condition, arrayClasses) => {
+        if (el == null) return
+        arrayClasses.forEach((c) => {
+          el.classList.toggle(c, condition)
+        })
+      }
+
+      toggleBgTheme($bg, isDark, [...dark])
+      toggleBgTheme($bg, !isDark, [...light])
+      toggleBgTheme($bgChild, isDark, [...childDark])
+      toggleBgTheme($bgChild, !isDark, [...childLight])
+    }
+
+    const setIcon = (isDark) => {
+      const moonBtn = document.getElementById('moon')
+      const sunBtn = document.getElementById('sun')
+
+      const event = new Event('storage')
+      if (moonBtn == null || sunBtn == null) return
+      moonBtn.classList.toggle('hidden', isDark)
+      sunBtn.classList.toggle('hidden', !isDark)
+
+      moonBtn.addEventListener('click', () => {
+        localStorage.setItem('theme', 'dark')
+        window.dispatchEvent(event)
+      })
+      sunBtn.addEventListener('click', () => {
+        localStorage.setItem('theme', 'light')
+        window.dispatchEvent(event)
+      })
+    }
+
+    const updateTheme = () => {
+      if (remove != null) {
+        remove()
+      }
+      matchMedia.addEventListener('change', this.updateTheme)
+      remove = () => {
+        matchMedia.removeEventListener('change', this.updateTheme)
+      }
+
+      backgroundSetter(window.getThemePreference() === 'dark')
+      setIcon(window.getThemePreference() === 'dark')
+      document.documentElement.classList.toggle(
+        'dark',
+        window.getThemePreference() === 'dark'
+      )
+    }
+
+    const toggleTheme = () => {
+      updateTheme()
+
+      window.addEventListener('storage', updateTheme)
+      document.addEventListener('astro:after-swap', updateTheme)
+    }
+
+    toggleTheme()
+  </script>
 </button>
-
-<style>
-  button {
-    @apply p-3 sm:p-1;
-  }
-</style>
-
-<script>
-  import { ThemeController } from '@/lib/theme/controller/index'
-
-  const controller = new ThemeController()
-
-  controller.toggleTheme()
-</script>

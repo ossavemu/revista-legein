@@ -22,7 +22,10 @@ import { MESSAGES, PATHS } from '@/constants'
           ))
         }
       </ul>
-      <button class="text-amber-600">CERRAR</button>
+      <button
+        class="text-amber-600 border-2 border-amber-600 p-1 m-1 hover:scale-10 font-bold"
+        >CERRAR</button
+      >
     </form>
   </nav>
 
@@ -32,14 +35,22 @@ import { MESSAGES, PATHS } from '@/constants'
       background: transparent;
       top: 0%;
       left: 50%;
-      transform: translate(-50%, -75%);
+      transform: translate(-50%, -50%);
     }
 
     dialog::backdrop {
       backdrop-filter: blur(4px);
     }
+
+    button:hover {
+      color: #f3f3f3;
+      background: linear-gradient(90deg, #f3f3f3 50%, rgb(217 119 6) 50%);
+      background-size: 200% 100%;
+      background-position: right bottom;
+      transition: all 0.5s ease;
+    }
   </style>
-  <script>
+  <script is:inline defer>
     const modal = document.querySelector('dialog')
 
     const button = document.getElementById('mobile-menu-button')

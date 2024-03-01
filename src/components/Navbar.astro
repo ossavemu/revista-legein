@@ -2,6 +2,7 @@
 import { Logo, Hamburger } from '@/components/icons/index.astro'
 import ToggleTheme from '@/components/ToggleTheme.astro'
 import { PATHS, MESSAGES } from '@/constants/index'
+import Navmodal from './NavModal.astro'
 ---
 
 <nav
@@ -14,6 +15,7 @@ import { PATHS, MESSAGES } from '@/constants/index'
     <Logo />
     <div class="flex space-x-3 md:space-x-0 rtl:space-x-reverse">
       <Hamburger />
+      <Navmodal />
       <div
         class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 font-semibold"
         id="navbar-cta"

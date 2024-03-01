@@ -1,7 +1,6 @@
 import { BgClassesArray } from '@/lib/theme/constants'
 
 export const backgroundSetter = (isDark: boolean): void => {
-  console.log(isDark)
   const { light, childLight, dark, childDark } = BgClassesArray
 
   const $bg = document.getElementById('bg')

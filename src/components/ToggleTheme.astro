@@ -65,10 +65,10 @@ const { light, patternLight, dark, patternDark } = BgClassesArray
           })
         }
 
-        this.#setTheme(this.getThemePreference() === 'dark')
+        this.#setTheme(this.#getThemePreference() === 'dark')
       }
 
-      getThemePreference() {
+      #getThemePreference() {
         const localItem =
           typeof localStorage !== 'undefined' && localStorage.getItem('theme')
 

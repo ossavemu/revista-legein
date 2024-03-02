@@ -2,7 +2,8 @@
 import { Logo, Hamburger } from '@/components/icons/index.astro'
 import ToggleTheme from '@/components/ToggleTheme.astro'
 import { PATHS, MESSAGES } from '@/constants/index'
-import Navmodal from './NavModal.astro'
+import Modal from './Modal.astro'
+import Button from './Button.astro'
 ---
 
 <nav
@@ -14,8 +15,29 @@ import Navmodal from './NavModal.astro'
   >
     <Logo />
     <div class="flex space-x-3 md:space-x-0 rtl:space-x-reverse">
-      <Hamburger />
-      <Navmodal />
+      <Button
+        type="button"
+        class="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        id="mobile-menu-button"
+      >
+        <Hamburger />
+      </Button>
+      <Modal id="navbar-mobile-modal">
+        <ul class="w-full p-2">
+          {
+            Object.values(MESSAGES).map((message, index) => (
+              <li class="border-2 rounded-lg dark:border-gray-500 border-gray-600 px-2  m-4 hover:scale-105 hover:border-amber-700 dark:hover:border-amber-700 duration-300 ease-in-out">
+                <a
+                  href={Object.values(PATHS)[index] ?? '#'}
+                  class="text-lg text-center"
+                >
+                  {message}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </Modal>
       <div
         class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 font-semibold"
         id="navbar-cta"
@@ -26,7 +48,12 @@ import Navmodal from './NavModal.astro'
           {
             Object.values(MESSAGES).map((message, index) => (
               <li>
-                <a href={Object.values(PATHS)[index] ?? '#'}>{message}</a>
+                <a
+                  href={Object.values(PATHS)[index] ?? '#'}
+                  class="py-2 px-3 md:p-0 "
+                >
+                  {message}
+                </a>
               </li>
             ))
           }
@@ -35,11 +62,6 @@ import Navmodal from './NavModal.astro'
     </div>
     <ToggleTheme />
   </div>
-  <style>
-    li > a {
-      @apply py-2 px-3 md:p-0;
-    }
-  </style>
 
   <script is:inline defer>
     const isCurrentPathClasses =
@@ -72,12 +94,17 @@ import Navmodal from './NavModal.astro'
       anchors.forEach((anchor) => {
         addStyles(anchor)
       })
-
     document.addEventListener('DOMContentLoaded', () => {
       addStylesToAnchors()
     })
     document.addEventListener('astro:after-swap', () => {
       addStylesToAnchors()
+    })
+
+    const mobileMenuButton = document.getElementById('mobile-menu-button')
+
+    mobileMenuButton.addEventListener('click', () => {
+      document.getElementById('navbar-mobile-modal').showModal()
     })
   </script>
 </nav>

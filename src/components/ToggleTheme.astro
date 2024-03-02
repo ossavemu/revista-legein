@@ -4,18 +4,13 @@ import { BgClassesArray } from '@/lib/theme/constants'
 const { light, childLight, dark, childDark } = BgClassesArray
 ---
 
-<button
+<div
   title="Toggles light & dark"
-  aria-label="auto"
-  aria-live="polite"
+  id="theme-toggle"
+  class="p-3 sm:p-1 cursor-pointer"
   transition:persist
 >
   <Sun /><Moon />
-  <style>
-    button {
-      @apply p-3 sm:p-1;
-    }
-  </style>
 
   <script define:vars={{ light, childLight, dark, childDark }} is:inline>
     let remove = null
@@ -83,4 +78,4 @@ const { light, childLight, dark, childDark } = BgClassesArray
 
     toggleTheme()
   </script>
-</button>
+</div>

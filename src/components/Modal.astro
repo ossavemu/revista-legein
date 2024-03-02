@@ -10,7 +10,7 @@ import Chip from './Chip.astro'
       class="absolute inset-0 bg-transparent dark:bg-fuchsia-400 dark:bg-[size:20px_20px] dark:opacity-20 dark:blur-[100px]"
     >
     </div>
-    <form method="dialog" class="p-4 z-10">
+    <form method="dialog" class="px-4 pb-3 z-10">
       <slot />
 
       <button class={Astro.props.closeBtnClass}>
@@ -20,16 +20,38 @@ import Chip from './Chip.astro'
   </nav>
 
   <style>
+    dialog[open] {
+      opacity: 1;
+    }
+
     dialog {
+      opacity: 0;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       background: transparent;
+      transition: all 0.3s ease-in-out allow-discrete;
+    }
+    @starting-style {
+      dialog[open] {
+        opacity: 0;
+        transform: scaleY(0);
+      }
     }
 
     dialog::backdrop {
+      backdrop-filter: blur(0px);
+      transition: all 0.3s ease-in-out allow-discrete;
+    }
+    dialog[open]::backdrop {
       backdrop-filter: blur(4px);
+    }
+    @starting-style {
+      dialog[open]::backdrop {
+        backdrop-filter: blur(0px);
+        background-color: rgb(0 0 0 / 0%);
+      }
     }
   </style>
   <script is:inline defer>

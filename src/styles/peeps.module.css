@@ -4,13 +4,7 @@
   --peep-facial-hair: beard1;
   --peep-body: tee-crossed;
 
-  --peep-hat-color: #fc03c2;
-  --peep-hair-color: #000000;
-  --peep-skin-color: #ffffff;
-  --peep-accessory-color: #00ff00;
-  --peep-facial-hair-color: #ffd700;
-  --peep-object-color: #ffa500;
-  --peep-clothes-color: #ff0000;
+
 }
 
 .diego {
@@ -19,13 +13,6 @@
   --peep-facial-hair: beard1;
   --peep-body: buttonup1;
 
-  --peep-hat-color: #fc03c2;
-  --peep-hair-color: #000000;
-  --peep-skin-color: #ffffff;
-  --peep-accessory-color: #00ff00;
-  --peep-facial-hair-color: #ffd700;
-  --peep-object-color: #ffa500;
-  --peep-clothes-color: #ffffff;
 }
 
 .juan {
@@ -35,13 +22,6 @@
   --peep-facial-hair: beard2;
   --peep-body: laptop;
 
-  --peep-hat-color: #fc03c2;
-  --peep-hair-color: #000000;
-  --peep-skin-color: #ffffff;
-  --peep-accessory-color: #00ff00;
-  --peep-facial-hair-color: #ffd700;
-  --peep-object-color: #000000;
-  --peep-clothes-color: #ffffff;
 }
 
 .roxana {
@@ -49,12 +29,4 @@
   --peep-face: suspicious;
   --peep-accessory: glasses1;
   --peep-body: tee-selena;
-
-  --peep-hat-color: #fc03c2;
-  --peep-hair-color: #000000;
-  --peep-skin-color: #ffffff;
-  --peep-accessory-color: #00ff00;
-  --peep-facial-hair-color: #ffd700;
-  --peep-object-color: #000000;
-  --peep-clothes-color: #ffffff;
 }

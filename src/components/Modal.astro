@@ -68,9 +68,19 @@ import Chip from './Chip.astro'
     })
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
+      modal.close()
+    })
+
+    // if user presses the escape key, close the modal
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
         modal.close()
       }
+    })
+
+    //if user rotates the device, close the modal
+    screen.orientation.addEventListener('change', () => {
+      modal.close()
     })
   </script>
 </dialog>

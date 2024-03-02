@@ -16,11 +16,10 @@ const { name } = Astro.props
       --peep-height: 115px;
     }
     a {
-      --peep-hair-color: rgba(2, 6, 23, 0.9);
-      --peep-skin-color: #ffffff;
-
-      --peep-object-color: rgba(2, 6, 23, 0.9);
-      --peep-clothes-color: #ffffff;
+      --peep-hair-color: #000;
+      --peep-skin-color: #fff;
+      --peep-object-color: #000;
+      --peep-clothes-color: #fff;
 
       @apply block w-[calc(var(--peep-width)*0.7)] h-[calc(var(--peep-height)*0.7)] md:w-[var(--peep-width)] md:h-[var(--peep-width)] bg-transparent;
     }

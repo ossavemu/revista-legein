@@ -1,7 +1,7 @@
 ---
 import { Sun, Moon } from '@/components/icons/index.astro'
 import { BgClassesArray } from '@/lib/theme/constants'
-const { light, childLight, dark, childDark } = BgClassesArray
+const { light, patternLight, dark, patternDark } = BgClassesArray
 ---
 
 <div
@@ -12,70 +12,121 @@ const { light, childLight, dark, childDark } = BgClassesArray
 >
   <Sun /><Moon />
 
-  <script define:vars={{ light, childLight, dark, childDark }} is:inline>
-    let remove = null
-    const matchMedia = window.matchMedia('(prefers-color-scheme: dark)')
+  <script define:vars={{ light, patternLight, dark, patternDark }} is:inline>
+    class ThemeManager {
+      constructor() {
+        this.matchMedia = window.matchMedia('(prefers-color-scheme: dark)')
 
-    const backgroundSetter = (isDark) => {
-      const $bg = document.getElementById('bg')
-      const $bgChild = document.getElementById('bg-child')
+        this.removeMediaListener = null
 
-      const toggleBgTheme = (el, condition, arrayClasses) => {
-        if (el == null) return
-        arrayClasses.forEach((c) => {
-          el.classList.toggle(c, condition)
+        this.moon = document.getElementById('moon')
+
+        this.sun = document.getElementById('sun')
+
+        this.bg = document.getElementById('bg')
+
+        this.pattern = document.getElementById('pattern')
+
+        this.eventStorage = new Event('storage')
+
+        this.#bindEvents()
+      }
+
+      #bindEvents() {
+        this.#updateTheme()
+        this.#onStorageChange()
+        this.#onTransitionPage()
+      }
+
+      #onTransitionPage() {
+        document.addEventListener('astro:after-swap', () => {
+          this.#updateTheme()
         })
       }
 
-      toggleBgTheme($bg, isDark, [...dark])
-      toggleBgTheme($bg, !isDark, [...light])
-      toggleBgTheme($bgChild, isDark, [...childDark])
-      toggleBgTheme($bgChild, !isDark, [...childLight])
-    }
-
-    const setIcon = (isDark) => {
-      const moonBtn = document.getElementById('moon')
-      const sunBtn = document.getElementById('sun')
-
-      const event = new Event('storage')
-      if (moonBtn == null || sunBtn == null) return
-      moonBtn.classList.toggle('hidden', isDark)
-      sunBtn.classList.toggle('hidden', !isDark)
-
-      moonBtn.addEventListener('click', () => {
-        localStorage.setItem('theme', 'dark')
-        window.dispatchEvent(event)
-      })
-      sunBtn.addEventListener('click', () => {
-        localStorage.setItem('theme', 'light')
-        window.dispatchEvent(event)
-      })
-    }
-
-    const updateTheme = () => {
-      if (remove != null) {
-        remove()
-      }
-      matchMedia.addEventListener('change', this.updateTheme)
-      remove = () => {
-        matchMedia.removeEventListener('change', this.updateTheme)
+      #onStorageChange() {
+        document.addEventListener('storage', () => {
+          this.#updateTheme()
+        })
       }
 
-      backgroundSetter(window.getThemePreference() === 'dark')
-      setIcon(window.getThemePreference() === 'dark')
-      document.documentElement.classList.toggle(
-        'dark',
-        window.getThemePreference() === 'dark'
-      )
+      #updateTheme() {
+        if (this.removeMediaListener) {
+          this.removeMediaListener()
+        }
+
+        this.matchMedia.addEventListener('change', () => {
+          this.#updateTheme()
+        })
+
+        this.removeMediaListener = () => {
+          this.matchMedia.removeEventListener('change', () => {
+            this.#updateTheme()
+          })
+        }
+
+        this.#setTheme(this.getThemePreference() === 'dark')
+      }
+
+      getThemePreference() {
+        const localItem =
+          typeof localStorage !== 'undefined' && localStorage.getItem('theme')
+
+        if (localItem) return localItem
+
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
+      }
+
+      #setTheme(isDark) {
+        this.#setBackground(isDark)
+        this.#setThemeIcon(isDark)
+        document.documentElement.classList.toggle('dark', isDark)
+      }
+
+      #setBackground(isDark) {
+        this.#toggleClasses(this.bg, isDark, dark)
+        this.#toggleClasses(this.bg, !isDark, light)
+
+        this.#toggleClasses(this.pattern, isDark, patternDark)
+        this.#toggleClasses(this.pattern, !isDark, patternLight)
+      }
+
+      #setThemeIcon(isDark) {
+        if (!this.moon || !this.sun) return
+
+        this.moon.classList.toggle('hidden', isDark)
+        this.sun.classList.toggle('hidden', !isDark)
+
+        this.#setThemeIconClick(isDark)
+      }
+
+      #handleThemeIconClick = (theme) => {
+        localStorage.setItem('theme', theme)
+        document.dispatchEvent(this.eventStorage)
+      }
+
+      #setThemeIconClick(isDark) {
+        this.moon.addEventListener(
+          'click',
+          this.#handleThemeIconClick.bind(null, 'dark')
+        )
+        this.sun.addEventListener(
+          'click',
+          this.#handleThemeIconClick.bind(null, 'light')
+        )
+      }
+
+      #toggleClasses(el, condition, classNames) {
+        if (!el) return
+
+        classNames.forEach((c) => {
+          el.classList.toggle(c, condition)
+        })
+      }
     }
 
-    const toggleTheme = () => {
-      updateTheme()
-
-      window.addEventListener('storage', updateTheme)
-      document.addEventListener('astro:after-swap', updateTheme)
-    }
-
-    toggleTheme()
+    new ThemeManager()
   </script>
 </div>

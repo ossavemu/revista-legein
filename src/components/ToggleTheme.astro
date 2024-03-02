@@ -83,7 +83,12 @@ const { light, patternLight, dark, patternDark } = BgClassesArray
         this.#setBackground(isDark)
         this.#setThemeIcon(isDark)
         document.documentElement.classList.toggle('dark', isDark)
-        document.documentElement.style.bgColor = isDark ? '#000' : '#fff'
+
+        const currentColor = isDark ? '#000000' : '#ffffff'
+        document.documentElement.style.bgColor = currentColor
+
+        const metaThemeColor = document.querySelector('meta[name=theme-color]')
+        metaThemeColor.setAttribute('content', currentColor)
       }
 
       #setBackground(isDark) {

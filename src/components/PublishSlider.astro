@@ -2,7 +2,7 @@
 import Word from '@/components/icons/Word.astro'
 ---
 
-<section class="p-4 bg-white rounded-md max-w-4xl mx-auto my-4">
+<section class="p-4 bg-white rounded-md max-w-4xl m-4">
   <swiper-container
     class="mySwiper"
     pagination="true"
@@ -10,11 +10,13 @@ import Word from '@/components/icons/Word.astro'
     navigation="true"
   >
     <swiper-slide>
-      <h1 class="font-bold text-2xl">
-        Criterios de Publicación<p class="text-xl">
-          Desliza y publica tu artículo en la revista 👌
-        </p>
-      </h1>
+      <div>
+        <h1 class="font-bold text-2xl">
+          Criterios de Publicación<p class="text-xl">
+            Desliza y publica tu artículo en la revista 👌
+          </p>
+        </h1>
+      </div>
     </swiper-slide>
     <swiper-slide>
       <div class="font-bold text-left">
@@ -94,32 +96,42 @@ import Word from '@/components/icons/Word.astro'
     <swiper-slide>
       <div>
         <p>
-          Las letras cursivas o itálicas deben emplearse para palabras que se
-          quieran destacar. Igualmente, las cursivas se usan para escribir
-          palabras en otros idiomas, para títulos de libros, y para nombres de
-          revistas indicados dentro del texto. Cuando se trae a colación un
-          artículo o una parte de un libro, se hace entre comillas dobles.
+          Las letras <strong class="italic">cursivas o itálicas</strong> deben emplearse
+          para palabras que se quieran destacar.
+        </p><p>
+          Igualmente, las cursivas se usan para escribir palabras en otros
+          idiomas, para títulos de libros, y para nombres de revistas indicados
+          dentro del texto.
+        </p>
+        <p>
+          Cuando se trae a colación un artículo o una parte de un libro, se hace
+          entre comillas dobles.
         </p>
       </div>
     </swiper-slide>
     <swiper-slide
       ><div>
         <p>
-          Todas las citas deben ir acompañadas de su referencia correspondiente.
-          Dichas referencias deben hacerse en nota a pie de página, con
-          interlineado sencillo y letra tamaño 9 fuente Cambria. El apellido del
-          autor deberá llevar mayúsculas -preferiblemente versales- y luego del
-          nombre, entre paréntesis, se pondrá el año de la publicación que se
-          corresponde con la de las referencias bibliográficas y la página
-          correspondiente a la cita.
+          <strong
+            >Todas las citas deben ir acompañadas de su referencia
+            correspondiente.
+          </strong>
+          Dichas referencias deben hacerse en nota a pie de página, con interlineado
+          sencillo y letra tamaño 9 fuente Cambria.
         </p>
-      </div></swiper-slide
-    >
+        <p>
+          El apellido del autor deberá llevar mayúsculas -preferiblemente
+          versales- y luego del nombre, entre paréntesis, se pondrá el año de la
+          publicación que se corresponde con la de las referencias
+          bibliográficas y la página correspondiente a la cita.
+        </p>
+      </div>
+    </swiper-slide>
     <swiper-slide
       ><div>
         <p>
           Las citas realizadas al interior del texto que no superen dos
-          renglones de extensión deben ir entre comillas
+          renglones de extensión deben ir entre comillas.
         </p><p>
           Las citas realizadas al interior del texto que superen dos renglones
           de extensión deben ir separadas del párrafo, sin comillas, en letra
@@ -164,37 +176,37 @@ import Word from '@/components/icons/Word.astro'
           >
         </p>
       </div>
-    </swiper-slide>
-    <style>
-      div {
-        @apply p-8 flex flex-col gap-3;
-      }
-      swiper-container {
-        margin-top: 20px;
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        border-radius: 5%;
-      }
+    </swiper-slide></swiper-container
+  >
+  <style>
+    div {
+      @apply p-8 flex flex-col gap-3 justify-center items-center;
+    }
+    swiper-container {
+      margin-top: 20px;
+      width: 100%;
+      border-radius: 5%;
+      @apply md:aspect-video sm:aspect-square h-auto;
+    }
 
-      swiper-slide {
-        color: rgba(0, 0, 0, 0.7);
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-      }
+    swiper-slide {
+      color: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-      swiper-slide img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    </style>
+    swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 
-    <script defer src="swiper-element-bundle.min.js"></script>
-  </swiper-container>
+  <script defer src="swiper-element-bundle.min.js"></script>
 </section>

@@ -1,104 +1,200 @@
 ---
-import Card from './Card.astro'
+import Word from '@/components/icons/Word.astro'
 ---
 
-<div id="default-carousel" class="relative w-full" data-carousel="slide">
-  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-      <Card title="Card 1">
-        <p>This is the first card.</p>
-      </Card>
-    </div>
-    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-      <Card title="Card 2">
-        <p>This is the second card.</p>
-      </Card>
-    </div>
-  </div>
+<section class="p-4 bg-white rounded-md max-w-4xl mx-auto my-4">
+  <swiper-container
+    class="mySwiper"
+    pagination="true"
+    pagination-type="progressbar"
+    navigation="true"
+  >
+    <swiper-slide>
+      <h1 class="font-bold text-2xl">
+        Criterios de Publicación<p class="text-xl">
+          Desliza y publica tu artículo en la revista 👌
+        </p>
+      </h1>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="font-bold text-left">
+        <p>
+          Título del artículo en el idioma del texto y en inglés (centrados, en
+          mayúscula y negrita) ✔️
+        </p>
+        <p>
+          Nombre del autor (centrado, minúscula, debajo del titulo, en negrita y
+          cursiva) ✔️
+        </p>
+        <p>
+          Institución a la que pertenece(minúscula, centrado) y debajo el correo
+          electrónico. ✔️
+        </p>
+        <p>
+          En caso de las traducciones, el titulo solo se acepta en español. Debe
+          haber una nota al pie donde se aclare la procedencia del texto. ✔️
+        </p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div>
+        <h1 class="font-bold text-2xl">
+          Respetar la extensión de las páginas y el formato:
+        </h1>
+        <ul class="flex flex-col gap-3 text-left">
+          <li>✅ Artículos y traducciones: 5 mínimo - 20 máximo</li>
+          <li>✅ Reseñas: 5 máximo</li>
+          <li>
+            ✅ Fuente <strong>Cambria</strong> tamaño 11 - Interlineado 1.0
+          </li>
+          <li>
+            ✅ Para artículos, debe haber un resumen de <strong>250</strong> palabras
+            con su respectiva traducción al inglés (u otro idioma). El tamaño debe
+            ser <strong>11</strong> px, sangría primera linea <strong
+              >0.5</strong
+            >
+            cm
+          </li>
+          <li>
+            ✅ No olvidar <strong>5 palabras claves</strong> en ambos idiomas
+          </li>
+        </ul>
+      </div>
+    </swiper-slide>
+    <swiper-slide
+      ><article>
+        Enviar el texto en formato <Word
+          class="inline-block w-7 h-7 mx-1 -m-1"
+        /> (.doc) al correo
+        <a class="text-violet-500" href="mailto:revistalegein@gmail.com"
+          >revistalegein@gmail.com</a
+        ><h1 class="font-bold text-xl mt-4">
+          Anexar<p
+            class="text-rose-500/90 text-base italic max-w-96 mx-auto pt-2"
+          >
+            Carta donde se autorice a la <strong>Revista Legein</strong> la publicación
+            del artículo👌. Se debe constatar que el mismo es original e inédito.
+            Además de una nota autobiográfica del autor.
+          </p>
+        </h1>
+      </article></swiper-slide
+    >
+    <swiper-slide
+      ><div>
+        <p>
+          El texto <strong>no debe tener negritas</strong> (salvo los títulos y subtítulos
+          que deben ir numerados) ni subrayados. Elimine las mayúsculas seguidas.
+          Además, no deberá tener espacios entre los párrafos. Las páginas deben
+          estar justificadas con márgenes en cada uno de los lados de <strong
+            >3 cms</strong
+          > e ir numeradas en la parte inferior derecha.
+        </p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div>
+        <p>
+          Las letras cursivas o itálicas deben emplearse para palabras que se
+          quieran destacar. Igualmente, las cursivas se usan para escribir
+          palabras en otros idiomas, para títulos de libros, y para nombres de
+          revistas indicados dentro del texto. Cuando se trae a colación un
+          artículo o una parte de un libro, se hace entre comillas dobles.
+        </p>
+      </div>
+    </swiper-slide>
+    <swiper-slide
+      ><div>
+        <p>
+          Todas las citas deben ir acompañadas de su referencia correspondiente.
+          Dichas referencias deben hacerse en nota a pie de página, con
+          interlineado sencillo y letra tamaño 9 fuente Cambria. El apellido del
+          autor deberá llevar mayúsculas -preferiblemente versales- y luego del
+          nombre, entre paréntesis, se pondrá el año de la publicación que se
+          corresponde con la de las referencias bibliográficas y la página
+          correspondiente a la cita.
+        </p>
+      </div></swiper-slide
+    >
+    <swiper-slide
+      ><div>
+        <p>
+          Las citas realizadas al interior del texto que no superen dos
+          renglones de extensión deben ir entre comillas
+        </p><p>
+          Las citas realizadas al interior del texto que superen dos renglones
+          de extensión deben ir separadas del párrafo, sin comillas, en letra
+          tamaño 10, a espacio sencillo y con sangría de 1 cm.
+        </p><p>
+          Las citas textuales que se hagan al interior del texto deben ir
+          acompañadas de la referencia correspondiente.
+        </p>
+      </div></swiper-slide
+    >
+    <swiper-slide
+      ><div>
+        <p>
+          Al final del articulo deben recopilarse Todos las referencias
+          bibliográficas ci10dos o empleados en la elaboración del artículo,
+          bajo el título 'Referencias Bibliográficas' (en mayúscula
+          —preferiblemente versales—, en negrita, Tamaño 10, centrado). Las
+          referencias deberán ser organizados primero alfabéticamente, según el
+          apellido del autor, ), y luego cronológicamente, según el año de la
+          publicación. Si un autor Tiene varias obras publicados en el mismo
+          año, entonces se le agrega una ordenación con las letras del alfabeto
+          junto al año. El formato de las referencias deberá llevar Tamaño 10,
+          con interlineado sencillo.
+        </p>
+      </div></swiper-slide
+    ><swiper-slide
+      ><div>
+        <a
+          href="https://www.instagram.com/p/CtIf5SYtCWp/?img_index=9"
+          target="_blank"
+          class="text-rose-400/90 hover:text-indigo-500"
+        >
+          Dale a click aquí y encontrarás un ejemplo de cómo debe quedar tu
+          artículo.
+        </a>
 
-  <!-- Slider indicators -->
-  <div
-    class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse"
-  >
-    <button
-      type="button"
-      class="w-3 h-3 rounded-full"
-      aria-current="true"
-      aria-label="Slide 1"
-      data-carousel-slide-to="0"></button>
-    <button
-      type="button"
-      class="w-3 h-3 rounded-full"
-      aria-current="false"
-      aria-label="Slide 2"
-      data-carousel-slide-to="1"></button>
-    <button
-      type="button"
-      class="w-3 h-3 rounded-full"
-      aria-current="false"
-      aria-label="Slide 3"
-      data-carousel-slide-to="2"></button>
-    <button
-      type="button"
-      class="w-3 h-3 rounded-full"
-      aria-current="false"
-      aria-label="Slide 4"
-      data-carousel-slide-to="3"></button>
-    <button
-      type="button"
-      class="w-3 h-3 rounded-full"
-      aria-current="false"
-      aria-label="Slide 5"
-      data-carousel-slide-to="4"></button>
-  </div>
-  <button
-    type="button"
-    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-    data-carousel-prev
-  >
-    <span
-      class="inline-flex items-center justify-center w-10 h-10 rounded-full dark:bg-white/30 bg-gray-800/30 dark:group-hover:bg-white/50 group-hover:bg-gray-800/60 group-focus:ring-4 dark:group-focus:ring-white group-focus:ring-gray-800/70 group-focus:outline-none"
-    >
-      <svg
-        class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 6 10"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5 1 1 5l4 4"></path>
-      </svg>
-      <span class="sr-only">Previous</span>
-    </span>
-  </button>
-  <button
-    type="button"
-    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-    data-carousel-next
-  >
-    <span
-      class="inline-flex items-center justify-center w-10 h-10 rounded-full dark:bg-white/30 bg-gray-800/30 dark:group-hover:bg-white/50 group-hover:bg-gray-800/60 group-focus:ring-4 dark:group-focus:ring-white group-focus:ring-gray-800/70 group-focus:outline-none"
-    >
-      <svg
-        class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 6 10"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="m1 9 4-4-4-4"></path>
-      </svg>
-      <span class="sr-only">Next</span>
-    </span>
-  </button>
-</div>
+        <p>
+          Si tienes alguna duda, no dudes en contactarnos a través de nuestro
+          correo electrónico
+          <a class="text-violet-500" href="mailto:revistalegein@gmail.com">
+            revistalegein@gmail.com</a
+          >
+        </p>
+      </div>
+    </swiper-slide>
+    <style>
+      div {
+        @apply p-8 flex flex-col gap-3;
+      }
+      swiper-container {
+        margin-top: 20px;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 5%;
+      }
+
+      swiper-slide {
+        color: rgba(0, 0, 0, 0.7);
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+
+    <script defer src="swiper-element-bundle.min.js"></script>
+  </swiper-container>
+</section>

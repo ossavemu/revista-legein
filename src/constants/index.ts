@@ -1,3 +1,3 @@
 export { NAMES } from './members'
-export { MESSAGES } from './messages'
 export { PATHS } from './paths'
+export { ROUTE_NAMES } from './route-names'

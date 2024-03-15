@@ -4,5 +4,8 @@ import PublishSlider from '@/components/PublishSlider.astro'
 ---
 
 <Layout title="Publica con nosotros">
+  <slot name="head"
+    ><script src="swiper-element-bundle.min.js" defer></script></slot
+  >
   <div class="flex justify-center items-center"><PublishSlider /></div>
 </Layout>

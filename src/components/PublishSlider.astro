@@ -1,46 +1,43 @@
 ---
-import Word from '@/components/icons/Word.astro'
+import Word from './icons/Word.astro'
 ---
 
-<section class="p-4 bg-white rounded-md max-w-4xl m-4">
-  <swiper-container
-    class="mySwiper"
-    pagination="true"
-    pagination-type="progressbar"
-    navigation="true"
-  >
+<section class="p-4 bg-transparent max-w-4xl m-4">
+  <swiper-container class="mySwiper" effect="cards" grab-cursor="true" keyboard>
+    <swiper-slide
+      ><h1 class="font-bold text-2xl p-4">
+        Criterios de Publicación<p class="text-xl">
+          Desliza y publica tu artículo en la revista 👌
+        </p>
+      </h1></swiper-slide
+    >
     <swiper-slide>
-      <div>
-        <h1 class="font-bold text-2xl">
-          Criterios de Publicación<p class="text-xl">
-            Desliza y publica tu artículo en la revista 👌
-          </p>
-        </h1>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <div class="font-bold text-left">
+      <span>
         <p>
           Título del artículo en el idioma del texto y en inglés (centrados, en
           mayúscula y negrita) ✔️
         </p>
-        <p>
+        <p class="pt-2">
           Nombre del autor (centrado, minúscula, debajo del titulo, en negrita y
           cursiva) ✔️
-        </p>
+        </p></span
+      >
+    </swiper-slide>
+    <swiper-slide
+      ><span>
         <p>
           Institución a la que pertenece(minúscula, centrado) y debajo el correo
           electrónico. ✔️
         </p>
-        <p>
+        <p class="pt-2">
           En caso de las traducciones, el titulo solo se acepta en español. Debe
           haber una nota al pie donde se aclare la procedencia del texto. ✔️
-        </p>
-      </div>
+        </p></span
+      >
     </swiper-slide>
-    <swiper-slide>
-      <div>
-        <h1 class="font-bold text-2xl">
+    <swiper-slide
+      ><span>
+        <h1 class="font-bold pb-2">
           Respetar la extensión de las páginas y el formato:
         </h1>
         <ul class="flex flex-col gap-3 text-left">
@@ -49,53 +46,59 @@ import Word from '@/components/icons/Word.astro'
           <li>
             ✅ Fuente <strong>Cambria</strong> tamaño 11 - Interlineado 1.0
           </li>
-          <li>
-            ✅ Para artículos, debe haber un resumen de <strong>250</strong> palabras
-            con su respectiva traducción al inglés (u otro idioma). El tamaño debe
-            ser <strong>11</strong> px, sangría primera linea <strong
-              >0.5</strong
-            >
-            cm
-          </li>
-          <li>
-            ✅ No olvidar <strong>5 palabras claves</strong> en ambos idiomas
-          </li>
-        </ul>
-      </div>
+        </ul></span
+      >
     </swiper-slide>
     <swiper-slide
-      ><article>
-        Enviar el texto en formato <Word
-          class="inline-block w-7 h-7 mx-1 -m-1"
-        /> (.doc) al correo
+      ><ul>
+        <li>
+          ✅ Para artículos, debe haber un resumen de <strong>250</strong> palabras
+          con su respectiva traducción al inglés (u otro idioma). El tamaño debe
+          ser <strong>11</strong> px, sangría primera linea <strong>0.5</strong>
+          cm
+        </li>
+        <li>
+          ✅ No olvidar <strong>5 palabras claves</strong> en ambos idiomas
+        </li>
+      </ul></swiper-slide
+    >
+    <swiper-slide
+      ><span class="text-base">
+        Enviar el texto en formato <Word class="inline-block w-6 h-6 mx-2" /> (.doc)
+        al correo
         <a class="text-violet-500" href="mailto:revistalegein@gmail.com"
           >revistalegein@gmail.com</a
-        ><h1 class="font-bold text-xl mt-4">
-          Anexar<p
-            class="text-rose-500/90 text-base italic max-w-96 mx-auto pt-2"
-          >
+        >
+      </span></swiper-slide
+    >
+    <swiper-slide>
+      <span
+        ><h1 class="mt-4 text-base">
+          Anexar<p class="text-violet-200/90 max-w-96 mx-auto pt-2">
             Carta donde se autorice a la <strong>Revista Legein</strong> la publicación
             del artículo👌. Se debe constatar que el mismo es original e inédito.
             Además de una nota autobiográfica del autor.
           </p>
-        </h1>
-      </article></swiper-slide
+        </h1></span
+      >
+    </swiper-slide>
+    <swiper-slide
+      ><p class="text-base">
+        El texto <strong>no debe tener negritas</strong> (salvo los títulos y subtítulos
+        que deben ir numerados) ni subrayados. Elimine las mayúsculas seguidas.
+      </p></swiper-slide
+    >
+    <swiper-slide>
+      <p class="text-base">
+        Además, no deberá tener espacios entre los párrafos. Las páginas deben
+        estar justificadas con márgenes en cada uno de los lados de <strong
+          >3 cms</strong
+        > e ir numeradas en la parte inferior derecha.
+      </p></swiper-slide
     >
     <swiper-slide
-      ><div>
-        <p>
-          El texto <strong>no debe tener negritas</strong> (salvo los títulos y subtítulos
-          que deben ir numerados) ni subrayados. Elimine las mayúsculas seguidas.
-          Además, no deberá tener espacios entre los párrafos. Las páginas deben
-          estar justificadas con márgenes en cada uno de los lados de <strong
-            >3 cms</strong
-          > e ir numeradas en la parte inferior derecha.
-        </p>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <div>
-        <p>
+      ><span>
+        <p class="text-base pb-2">
           Las letras <strong class="italic">cursivas o itálicas</strong> deben emplearse
           para palabras que se quieran destacar.
         </p><p>
@@ -103,66 +106,70 @@ import Word from '@/components/icons/Word.astro'
           idiomas, para títulos de libros, y para nombres de revistas indicados
           dentro del texto.
         </p>
-        <p>
-          Cuando se trae a colación un artículo o una parte de un libro, se hace
-          entre comillas dobles.
-        </p>
-      </div>
+      </span></swiper-slide
+    >
+    <swiper-slide>
+      <p class="text-base">
+        Cuando se trae a colación un artículo o una parte de un libro, se hace
+        entre comillas dobles. ("")
+      </p>
+    </swiper-slide>
+    <swiper-slide>
+      <strong class="text-base"
+        >Todas las citas deben ir acompañadas de su referencia correspondiente,
+        deben hacerse en nota a pie de página, con interlineado sencillo y letra
+        tamaño 9 fuente Cambria.</strong
+      >
     </swiper-slide>
     <swiper-slide
-      ><div>
+      ><p class="text-base">
+        El apellido del autor deberá llevar <strong
+          >mayúsculas -preferiblemente versales-</strong
+        > y luego del nombre, entre paréntesis, se pondrá el año de la publicación
+        que se corresponde con la de las referencias bibliográficas y la página correspondiente
+        a la cita.
+      </p></swiper-slide
+    ><swiper-slide
+      ><span class="text-base">
         <p>
-          <strong
-            >Todas las citas deben ir acompañadas de su referencia
-            correspondiente.
-          </strong>
-          Dichas referencias deben hacerse en nota a pie de página, con interlineado
-          sencillo y letra tamaño 9 fuente Cambria.
-        </p>
-        <p>
-          El apellido del autor deberá llevar mayúsculas -preferiblemente
-          versales- y luego del nombre, entre paréntesis, se pondrá el año de la
-          publicación que se corresponde con la de las referencias
-          bibliográficas y la página correspondiente a la cita.
-        </p>
-      </div>
-    </swiper-slide>
-    <swiper-slide
-      ><div>
-        <p>
-          Las citas realizadas al interior del texto que no superen dos
-          renglones de extensión deben ir entre comillas.
+          Las citas al interior del texto que no superen dos renglones de
+          extensión <strong> deben ir entre comillas</strong>.
         </p><p>
-          Las citas realizadas al interior del texto que superen dos renglones
-          de extensión deben ir separadas del párrafo, sin comillas, en letra
-          tamaño 10, a espacio sencillo y con sangría de 1 cm.
-        </p><p>
-          Las citas textuales que se hagan al interior del texto deben ir
-          acompañadas de la referencia correspondiente.
+          Las citas al interior del texto que <strong
+            >superen dos renglones de extensión
+          </strong>deben ir separadas del párrafo, sin comillas, en letra tamaño
+          10, a espacio sencillo y con sangría de 1 cm.
         </p>
-      </div></swiper-slide
+      </span></swiper-slide
+    ><swiper-slide>
+      <p class="text-base">
+        Al final del articulo deben recopilarse Todos las referencias
+        bibliográficas citados o empleados en la elaboración del artículo, bajo
+        el título <strong class="italic"
+          >'Referencias Bibliográficas'
+        </strong>(en mayúscula —preferiblemente versales—, en negrita, Tamaño
+        10, centrado).
+      </p></swiper-slide
+    ><swiper-slide
+      ><p class="text-base">
+        Las referencias deberán ser organizados primero alfabéticamente, según
+        el apellido del autor, y luego cronológicamente, según el año de la
+        publicación.
+      </p></swiper-slide
+    ><swiper-slide
+      ><p class="text-base">
+        Si un autor tiene varias obras publicados en el mismo año, entonces se
+        le agrega una ordenación con las letras del alfabeto junto al año. El
+        formato de las referencias deberá llevar Tamaño 10, con interlineado
+        sencillo.
+      </p></swiper-slide
     >
     <swiper-slide
-      ><div>
-        <p>
-          Al final del articulo deben recopilarse Todos las referencias
-          bibliográficas ci10dos o empleados en la elaboración del artículo,
-          bajo el título 'Referencias Bibliográficas' (en mayúscula
-          —preferiblemente versales—, en negrita, Tamaño 10, centrado). Las
-          referencias deberán ser organizados primero alfabéticamente, según el
-          apellido del autor, ), y luego cronológicamente, según el año de la
-          publicación. Si un autor Tiene varias obras publicados en el mismo
-          año, entonces se le agrega una ordenación con las letras del alfabeto
-          junto al año. El formato de las referencias deberá llevar Tamaño 10,
-          con interlineado sencillo.
-        </p>
-      </div></swiper-slide
-    ><swiper-slide
-      ><div>
+      ><span class="text-base">
         <a
           href="https://www.instagram.com/p/CtIf5SYtCWp/?img_index=9"
           target="_blank"
-          class="text-rose-400/90 hover:text-indigo-500"
+          class="inline-block font-bold pb-4 text-rose-700/90 hover:text-indigo-700 hover:scale-105 duration-300"
         >
           Dale a click aquí y encontrarás un ejemplo de cómo debe quedar tu
           artículo.
@@ -175,38 +182,34 @@ import Word from '@/components/icons/Word.astro'
             revistalegein@gmail.com</a
           >
         </p>
-      </div>
-    </swiper-slide></swiper-container
-  >
+      </span></swiper-slide
+    >
+  </swiper-container>
   <style>
-    div {
-      @apply p-8 flex flex-col gap-3 justify-center items-center;
-    }
     swiper-container {
-      margin-top: 20px;
-      width: 100%;
-      border-radius: 5%;
-      @apply md:aspect-video sm:aspect-square h-auto;
+      width: 240px;
+      height: 320px;
     }
 
     swiper-slide {
-      color: rgba(0, 0, 0, 0.7);
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 20px;
+      justify-content: center;
+      border-radius: 18px;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      color: #fff;
+      padding: 1rem;
     }
 
-    swiper-slide img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    swiper-slide:nth-child(odd) {
+      background-color: rgb(63 63 70 / 0.95);
+      color: rgb(255 255 255 / 0.9);
+    }
+
+    swiper-slide:nth-child(even) {
+      background-color: rgb(161 161 170 / 0.95);
+      color: rgb(64 64 64 / 0.9);
     }
   </style>
-
-  <script defer src="swiper-element-bundle.min.js"></script>
 </section>
